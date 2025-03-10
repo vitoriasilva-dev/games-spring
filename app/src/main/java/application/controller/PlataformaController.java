@@ -85,6 +85,5 @@ Model ui) {
 
             return "redirect:/plataforma/list";
         }
-        
+
     }
-}
