@@ -4,18 +4,18 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Plataformas</title>
+    <title>Nova Plataforma</title>
     <link href="https://cdn.jsdelivr.net/npm/boostrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   <body>
     <div class="container">
-        <h1>Editar Plataforma</h1>
-        <form action="/plataforma/update" method="post">
+        <h1>Nova Plataforma</h1>
+        <form action="/plataforma/insert" method="post">
             <input type="hidden" name="id" value="${plataforma.id}"/>
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" name="nome" class="form-control" value="${plataforma.nome}"/>
+                <input type="text" name="nome" class="form-control"/>
             </div>
             <br />
             <a href="/plataforma/list" class="btn btn-primary"> Voltar</a>
