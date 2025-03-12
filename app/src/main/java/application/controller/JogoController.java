@@ -19,7 +19,7 @@ import application.repository.PlataformaRepository;;
 
 
 @Controller
-@RequestMapping("/jogos")
+@RequestMapping("/jogo")
 public class JogoController {
     @Autowired
     private JogoRepository jogoRepo;
@@ -31,15 +31,20 @@ public class JogoController {
     @RequestMapping("/list")
     public String list(Model ui){
         ui.addAttribute("jogos", categoriaRepo.findAll());
+        return "jogo/list";
+    }
+
+    @RequestMapping("/insert")
+    public String insert (Model ui) {
+        ui.addAttribute("categorias", categoriaRepo.findAll());
         ui.addAttribute("plataformas", plataformaRepo.findAll());
         return "jogo/insert";
     }
-
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public String insert (
-        @RequestParam("titulo") String titulo,
-        @RequestParam("categoria") long idCategoria,
-        @RequestParam("plataformas") long[] idsPlataformas){
+        @RequestMapping(value = "/insert", method = RequestMethod.POST)
+         public String insert(
+            @RequestParam("titulo") String titulo,
+            @RequestParam("categorias") long idCategoria,
+            @RequestParam("plataformas") long [] idsPlataformas) {
 
             Jogo jogo = new Jogo();
             jogo.setTitulo(titulo);
@@ -112,7 +117,8 @@ public class JogoController {
                 public String delete (@RequestParam("id") long id){
 
                     return "redirect:/jogo/list";
-                }
+                
+            }
 
 }
 
