@@ -21,20 +21,20 @@ import application.repository.PlataformaRepository;
 @RequestMapping("/jogo")
 public class Jogocontroller {
     @Autowired
-    private JogoRepository JogoRepo;
+    private JogoRepository jogoRepo;
     @Autowired
     private CategorialRepository categorialRepo;
     @Autowired
-    private PlataformaRepository PlataformaRepo;
+    private PlataformaRepository plataformaRepo;
  
     @RequestMapping("/list")
-    public String list(Wodel ui) {
-        ui.addAttribute("jogos", JogoRepo.findAll());
+    public String list(Model ui) {
+        ui.addAttribute("jogos", jogoRepo.findAll());
         return "jogo/list";
     }
  
     @RequestMapping("/Insert")
-    public String insert(Wodel ui) {
+    public String insert(Model ui) {
         ui.addAttribute("categorias", categoriaRepo.findAll());
         ui.addAttribute("plataformas", plataformaRepo.findAll());
         return "jogo/insert";
@@ -48,7 +48,7 @@ public class Jogocontroller {
  
         Jogo jogo = new Jogo();
         jogo.setTitulo(titulo);
-        jogo.setCategoria(categorialRepo.findById(idcategoria).get());
+        jogo.setCategoria(categoriaRepo.findById(idcategoria).get());
         for(long p : idsPlataformas) {
             Optional<Plataforma> plataforma = plataformaRepo.findById(p);
             if(plataforma.isPresent()) {

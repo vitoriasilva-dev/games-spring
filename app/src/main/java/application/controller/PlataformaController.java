@@ -71,7 +71,7 @@ Model ui) {
 
             Optional<Plataforma> plataforma = plataformaRepo.findById(id);
 
-            if(plataforma.IsPresent()) {
+            if(plataforma.isPresent()) {
                 ui.addAttribute("plataforma", plataforma.get());
                 return "plataforma/delete";
             }
