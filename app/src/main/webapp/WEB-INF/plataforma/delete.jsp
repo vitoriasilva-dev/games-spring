@@ -16,7 +16,7 @@
             <input type="hidden" name="id" value="${plataforma.id}"/>
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" name="nome" class="form-control" value="${plataforma.nome}"/>
+                <input type="hidden" name="id" value="${plataforma.id}"/>
             </div>
             <br />
             <a href="/plataforma/list" class="btn btn-primary"> Voltar</a>
