@@ -14,5 +14,10 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implemention 'org.springframework.boot:spring-boot-starter-data-jpa:3.2.4'
 	implemention 'org.springframework.boot;spring-boot-starter'
-	
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+	implementation 'org,springframework.boot:spring-boot-starter-test'
+	implementation 'org.apache.commons:commons-csv:1.9.0'
+
 }
