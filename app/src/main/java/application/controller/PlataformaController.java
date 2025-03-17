@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import application.model.Plataforma;
 import application.repository.PlataformaRepository;
 
+
 @Controller
-@RequestMapping("/plataforma")
+@RequestMapping("/plataforma") // Mapeamento base para todas as requisições deste controller
 public class PlataformaController {
 
     @Autowired
