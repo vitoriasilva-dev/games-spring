@@ -1,8 +1,8 @@
-package application.controler;
+package application.controller;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotaion.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +14,14 @@ import application.repository.CategoriaRepository;
 
 @Controller
 @RequestMapping("/categoria")
-public class CategoriaController {
+public class CategoriaController{
     @Autowired
     private CategoriaRepository categoriaRepo;
 
     @RequestMapping("/list")
     public String list(Model ui){
-        ui.addAttribute("categorias" , categoriaRepo.finAll());
+        ui.addAttribute("categorias", categoriaRepo.findAll());
         return "categoria/list";
-
     }
 
     @RequestMapping("/insert")
@@ -30,20 +29,21 @@ public class CategoriaController {
         return "categoria/insert";
     }
 
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public String insert(@RequestParam("nome") String nome){
+    @RequestMapping(value= "/insert", method = RequestMethod.POST)
+    public String insert (@RequestParam("nome") String nome){
+        Categoria categoria = new Categoria();
         categoria.setNome(nome);
-
+        
         categoriaRepo.save(categoria);
-
         return "redirect:/categoria/list";
     }
 
-    @RequestMapping("/update")
-    public String update(
+    @RequestMapping("/update") // Anotação de mapeamento
+    public String update
+    (
         @RequestParam("id") long id,
-        Model ui) {
-
+     Model ui) { 
+        
             Optional<Categoria> categoria = categoriaRepo.findById(id);
 
             if(categoria.isPresent()){
@@ -52,41 +52,43 @@ public class CategoriaController {
             }
             return "redirect:/categoria/list";
         }
-        @RequestMapping(value = "/update", metgod = RequestMethod.POST)
-        public String update(
+    
+    
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(
+        @RequestParam("id") long id,
+        @RequestParam("nome") String nome){
+            Optional<Categoria> categoria =  categoriaRepo.findById(id);
+
+            if(categoria.isPresent()){
+                categoria.get().setNome(nome);
+                categoriaRepo.save(categoria.get());
+
+                
+            }
+            return "redirect:/categoria/list";
+        }
+
+
+        @RequestMapping("/delete")
+        public String delete(
             @RequestParam("id") long id,
-            @RequestParam("nome") String nome){
-
-                Optional<Categoria> categoria = categoriaRepo.findById(id);
-
-                if(categoria.isPresent()) {
-                    categoria.get().setNome(nome);
-
-                    categoriaRepo.save(categoria.get());
+            Model ui){
+                Optional<Categoria> categoria =  categoriaRepo.findById(id);
+    
+                if(categoria.isPresent()){
+                 ui.addAttribute("categoria", categoria.get());
+                 return "categoria/delete";
+    
+                    
                 }
                 return "redirect:/categoria/list";
             }
+            
 
-            @RequestMapping("/delete")
-            public String delete(
-                @RequestParam("id") long id,
-                Model ui) {
-
-                    Optional<Categoria> categoria = categoriaRepo.findById(id);
-
-                    if(categoria.isPresent()) {
-                        ui.Attribute("categoria", categoria.get());
-                        return "categoria/delete";
-                    }
-                    return "redirect:/categoria/list";
-                }
-                @RequestMapping(value = "/delete", method = RequestMethod.POST)
-                public String dlete(@RequestParam("id") long id) {
-                    categoriaRepo.deleteById(id);
-
-                    return "redirect:/cattegoria/list";
-                }
-
-                
-
-}
+        @RequestMapping(value = "/delete", method = RequestMethod.POST)
+        public String delete(@RequestParam("id") long id) {
+            categoriaRepo.deleteById(id);
+            return "redirect:/categoria/list";
+        }
+    }
