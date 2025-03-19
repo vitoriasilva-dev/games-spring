@@ -11,6 +11,8 @@
 <body>
     <div class="container">
         <h1>Jogos</h1>
+        <a href="/" class="btn btn-secondary mb-3">Voltar ao Home</a>
+        
         <a href="/jogo/insert" class="btn btn-primary">Novo Jogo</a>
         
         <table class="table">
