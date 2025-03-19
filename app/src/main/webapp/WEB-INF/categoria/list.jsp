@@ -11,6 +11,7 @@
     <body>
         <div class="container">
             <h1>Categorias</h1>
+            <a href="/" class="btn btn-secondary mb-3">Voltar ao Home</a>
             <a href="/categoria/insert" class="btn btn-primary" >Nova Categoria</a>
             
             <table class="table">
