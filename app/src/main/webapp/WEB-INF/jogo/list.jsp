@@ -32,7 +32,7 @@
                         <td>${jogo.titulo}</td>
                         <td>${jogo.categoria.nome}</td> <!-- Exibe o nome da categoria -->
                         <td>
-                            <c:forEach var="p" varStatus="s" items="${item.plataformas}">
+                            <c:forEach var="p" varStatus="s" items="${jogo.plataformas}">
                                 ${s.getCount() >1 ? ", " : ""}
                                 ${p.nome}
                             </c:forEach>
