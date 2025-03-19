@@ -28,7 +28,7 @@ public class PlataformaController {
 
     @RequestMapping("/insert")  // Para o método GET
     public String addPlataformaForm(Model ui) {
-        return "plataformas/insert"; // Nome da view para o formulário de adição
+        return "plataforma/insert"; // Nome da view para o formulário de adição
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)  // Para o método POST
@@ -44,7 +44,7 @@ public class PlataformaController {
         Plataforma plataforma = plataformaRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID de plataforma inválido:" + id));
         model.addAttribute("plataforma", plataforma);
-        return "plataformas/edit"; // Nome da view para o formulário de edição
+        return "plataforma/edit"; // Nome da view para o formulário de edição
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)  // Para o método POST
